@@ -1,0 +1,6 @@
+#!/bin/bash
+logger -i "Update started..."
+
+sudo apt-get update -y && sudo apt-get upgrade -y
+
+logger -i "Update completed"

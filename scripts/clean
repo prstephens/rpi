@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Cleaning library..."
+curl --data-binary '{ "jsonrpc": "2.0", "method": "VideoLibrary.Clean"}' -H 'content-type: application/json;' http://openelec.lan/jsonrpc
+

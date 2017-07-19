@@ -1,0 +1,26 @@
+#!/bin/bash
+logger -i "Backup started"
+
+TIME=`date +%b-%d-%y`            # This Command will add date in Backup File Name.
+FILENAME=backup-$TIME.tar.gz    # Here i define Backup file name format.
+FILENAMEFULL=FULL-backup-$TIME.tar.gz
+SRCDIR=/                   # Location of Important Data Directory (Source of backup).
+SRCDIRS="/home/pi/ /etc/" 
+DESDIR=/media/USBHDD/backups            # Destination of backup file.
+
+# remove backups older than 14 days
+find /media/USBHDD/backups -mtime +13 -printf "%f\n" -exec rm {} \;
+
+#If sunday do FULL backup
+if [[ $(date '+%a') == "Sun" || "$1" == "full" ]]; then
+   tar -cpzf $DESDIR/$FILENAMEFULL --exclude=/media --exclude=/dev --exclude=/mnt --exclude=/proc --exclude=/tmp --exclude=/sys --exclude=/run $SRCDIR
+   #delete current backups from dropbox
+   #/home/pi/scripts/Dropbox-Uploader/dropbox_uploader.sh delete /backups/
+   #/home/pi/scripts/Dropbox-Uploader/dropbox_uploader.sh mkdir backups
+   #/home/pi/scripts/Dropbox-Uploader/dropbox_uploader.sh upload $DESDIR/$FILENAMEFULL /backups/
+else
+   # do the backup
+   tar -cpzf $DESDIR/$FILENAME $SRCDIRS /home/pi/scripts/Dropbox-Uploader/dropbox_uploader.sh upload $DESDIR/$FILENAME /backups/
+fi
+
+logger -i "Backup completed"
