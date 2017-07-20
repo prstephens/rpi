@@ -1,0 +1,2 @@
+#!/bin/bash
+wakeonlan 1C:1B:0D:6F:74:F2
