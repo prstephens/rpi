@@ -116,6 +116,7 @@ alias torstart='sudo service tor start'
 #my scripts
 alias backup='/home/pi/scripts/backup'
 alias tv='ssh root@openelec.lan -p 22'
+alias tm='ssh Paul@timemachine.lan -p 22'
 alias ps='ps -elf | grep'
 #alias update='sudo apt-get update -y && sudo apt-get upgrade -y'
 alias install='sudo apt-get install'
