@@ -129,9 +129,9 @@ alias firewall='sudo iptables -L -n -v --line-numbers'
 alias startup="sudo chkconfig --list | grep $(runlevel | awk '{ print $2}'):on"
 
 bu() { cp "$@" "$@.backup-`date +%y%m%d`"; echo "`date +%Y-%m-%d` backed up $PWD/$@" >> ~/.backups.log; } 
-colortail() { tail -1000 $*|ccze -A; }
+colortail() { tail -500 $*|ccze -A; }
 alias ct='colortail'
-alias syslog='colortail /var/log/syslog'
+alias log='colortail /var/log/syslog'
 alias snortlog='colortail /var/log/snort/alert'
 alias weather='curl wttr.in/London'
 alias moon='curl wttr.in/moon'
@@ -183,6 +183,6 @@ IP Address.........: $(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -
 "
 
 # setup python environment wrapper homes
-export WORKON_HOME=~/Envs
-source /usr/local/bin/virtualenvwrapper.sh > /dev/null 2>&1
+#export WORKON_HOME=~/Envs
+#source /usr/local/bin/virtualenvwrapper.sh > /dev/null 2>&1
 
