@@ -118,17 +118,19 @@ alias torstart='sudo service tor start'
 
 
 #my scripts
-alias backup='/home/pi/scripts/backup'
-alias tv='ssh root@openelec.lan -p 22'
-alias tm='ssh Paul@timemachine.lan -p 22'
+#alias backup='/home/pi/scripts/backup'
+alias tv='exp openelec ssh root@openelec.lan -p 22'
+alias tm='exp gibson ssh Paul@timemachine.lan -p 22'
 alias ps='ps -elf | grep'
 #alias update='sudo apt-get update -y && sudo apt-get upgrade -y'
 alias install='sudo apt-get install'
 alias nocomment='sudo grep -Ev '\''^(#|$)'\'''
 alias firewall='sudo iptables -L -n -v --line-numbers'
 alias startup="sudo chkconfig --list | grep $(runlevel | awk '{ print $2}'):on"
+alias eb="sudo nano ~/.bashrc"
+alias loadbash=". ~/.bashrc"
 
-bu() { cp "$@" "$@.backup-`date +%y%m%d`"; echo "`date +%Y-%m-%d` backed up $PWD/$@" >> ~/.backups.log; } 
+bu() { cp "$@" "$@.backup-`date +%s`"; echo "`date +%Y-%m-%d` backed up $PWD/$@" >> ~/.backups.log; } 
 colortail() { tail -500 $*|ccze -A; }
 alias ct='colortail'
 alias log='colortail /var/log/syslog'
