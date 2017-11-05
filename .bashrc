@@ -181,7 +181,7 @@ $(tput setaf 190)$(df -h | grep Filesystem)$(tput setaf 190)
 $(tput setaf 190)$(df -h|grep /dev/sda1)$(tput setaf 190)
 
 Uptime.............: ${UPTIME}
-IP Address.........: $(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ printf "%s ", $1}') $(tput setaf 7)
+IP Address.........: $(ifconfig | grep 'inet'| grep -v '127.0.0.1' | cut -d ' ' -f10 | awk '{ printf "%s ", $1}') $(tput setaf 7)
 "
 
 # setup python environment wrapper homes
