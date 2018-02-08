@@ -1,4 +1,3 @@
 #!/bin/bash
 echo "Updating library..."
-curl --data-binary '{ "jsonrpc": "2.0", "method": "VideoLibrary.Scan"}' -H 'content-type: application/json;' http://openelec.lan/jsonrpc
-
+curl --data-binary '{ "jsonrpc": "2.0", "method": "VideoLibrary.Scan"}' -H 'content-type: application/json;' http://openelec.lan/jsonrpc >> /dev/null 2>&1
