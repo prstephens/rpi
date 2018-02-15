@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo sed -i '/^#.* 25.56.128.186:9050 /s/^#//' /etc/privoxy/config
+sudo sed -i '/^#.* 127.0.0.1:9050 /s/^#//' /etc/privoxy/config
 sudo service tor start
 sudo service privoxy restart

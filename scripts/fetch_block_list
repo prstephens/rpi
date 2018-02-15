@@ -1,0 +1,9 @@
+#!/bin/bash
+## get new ad server list
+wget -O /etc/squid/block/ad_block.txt 'http://pgl.yoyo.org/adservers/serverlist.php?hostformat=squid-dstdom-regex&showintro=0&mimetype=plaintext'
+
+sudo python /home/pi/scripts/adblock2squid.py > /etc/squid/block/easyadblock.txt
+
+# refresh squid
+/usr/sbin/squid3 -k reconfigure
+logger -i "Ad Block List updated"

@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Moving following movies: "
-sudo find /media/USBHDD/downloads/complete/ -type f \( -name "*.mp4" -o -name "*.mkv" \) -printf "%f\n" -exec sudo chmod 775 '{}' \; -exec sudo chown -R nasuser:pi '{}' \; -exec sudo mv {} /media/USBHDD/Movies/ \;
+sudo find /media/USBHDD/downloads/complete/ -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.avi" \) -printf "%f\n" -exec sudo chmod 775 '{}' \; -exec sudo chown -R nasuser:pi '{}' \; -exec sudo mv {} /media/USBHDD/Movies/ \;
 sudo rm /media/USBHDD/Movies/RARBG.COM.mp4
 scan
 echo "Done!"

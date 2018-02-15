@@ -102,9 +102,9 @@ alias sambastop='sudo service smbd stop'
 alias sambastart='sudo service smbd start'
 
 # SQUID Start, Stop, and Restart
-alias squidrestart='sudo service squid3 restart'
-alias squidstop='sudo service squid3 stop'
-alias squidstart='sudo service squid3 start'
+alias squidrestart='sudo service squid restart'
+alias squidstop='sudo service squid stop'
+alias squidstart='sudo service squid start'
 
 # PRIVOXY Start, Stop, and Restart
 alias proxyrestart='sudo service privoxy restart'
@@ -116,6 +116,8 @@ alias torrestart='sudo service tor restart'
 alias torstop='sudo service tor stop'
 alias torstart='sudo service tor start'
 
+#restart proxy chain
+alias chainrestart='sudo service privoxy restart && sudo service squid restart'
 
 #my scripts
 #alias backup='/home/pi/scripts/backup'
@@ -134,7 +136,6 @@ bu() { cp "$@" "$@.backup-`date +%s`"; echo "`date +%Y-%m-%d` backed up $PWD/$@"
 colortail() { tail -500 $*|ccze -A; }
 alias ct='colortail'
 alias log='colortail /var/log/syslog'
-alias snortlog='colortail /var/log/snort/alert'
 alias weather='curl wttr.in/London'
 alias moon='curl wttr.in/moon'
 alias fuck='sudo $(history -p \!\!)'
@@ -181,7 +182,7 @@ $(tput setaf 190)$(df -h | grep Filesystem)$(tput setaf 190)
 $(tput setaf 190)$(df -h|grep /dev/sda1)$(tput setaf 190)
 
 Uptime.............: ${UPTIME}
-IP Address.........: $(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ printf "%s ", $1}') $(tput setaf 7)
+IP Address.........: $(ifconfig | grep 'inet'| grep -v '127.0.0.1' | cut -d ' ' -f10 | awk '{ printf "%s ", $1}') $(tput setaf 7)
 "
 
 # setup python environment wrapper homes
