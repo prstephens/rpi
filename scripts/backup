@@ -9,18 +9,14 @@ SRCDIRS="/home/pi/ /etc/"
 DESDIR=/media/USBHDD/backups            # Destination of backup file.
 
 # remove backups older than 14 days
-find /media/USBHDD/backups -mtime +13 -printf "%f\n" -exec rm {} \;
+sudo find /media/USBHDD/backups -mtime +13 -printf "%f\n" -exec rm {} \;
 
 #If sunday do FULL backup
 if [[ $(date '+%a') == "Sun" || "$1" == "full" ]]; then
-   tar -cpzf $DESDIR/$FILENAMEFULL --exclude=/media --exclude=/dev --exclude=/mnt --exclude=/proc --exclude=/tmp --exclude=/sys --exclude=/run $SRCDIR
-   #delete current backups from dropbox
-   #/home/pi/scripts/Dropbox-Uploader/dropbox_uploader.sh delete /backups/
-   #/home/pi/scripts/Dropbox-Uploader/dropbox_uploader.sh mkdir backups
-   #/home/pi/scripts/Dropbox-Uploader/dropbox_uploader.sh upload $DESDIR/$FILENAMEFULL /backups/
+   sudo tar -cpzf $DESDIR/$FILENAMEFULL --exclude=/media --exclude=/dev --exclude=/mnt --exclude=/proc --exclude=/tmp --exclude=/sys --exclude=/run $SRCDIR
 else
    # do the backup
-   tar -cpzf $DESDIR/$FILENAME $SRCDIRS /home/pi/scripts/Dropbox-Uploader/dropbox_uploader.sh upload $DESDIR/$FILENAME /backups/
+   sudo tar -cpzf $DESDIR/$FILENAME $SRCDIRS
 fi
 
 logger -i "Backup completed"

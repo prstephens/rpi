@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo proxychains nmap -vv -n -sS -Pn -p $2 --open $1
