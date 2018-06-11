@@ -86,8 +86,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-#add my scripts folder to my path
+# add my scripts folder to my path
 PATH=/home/pi/scripts/:"$PATH"
+
+# custom functions
+bu() { cp "$@" "$@.backup-`date +%s`"; echo "`date +%Y-%m-%d` backed up $PWD/$@" >> ~/.backups.log; } 
+colortail() { tail -500 $*|ccze -A; }
 
 # some more ls aliases
 alias ll='ls -al'
@@ -131,14 +135,13 @@ alias firewall='sudo iptables -L -n -v --line-numbers'
 alias startup="sudo chkconfig --list | grep $(runlevel | awk '{ print $2}'):on"
 alias eb="sudo nano ~/.bashrc"
 alias loadbash=". ~/.bashrc"
-
-bu() { cp "$@" "$@.backup-`date +%s`"; echo "`date +%Y-%m-%d` backed up $PWD/$@" >> ~/.backups.log; } 
-colortail() { tail -500 $*|ccze -A; }
 alias ct='colortail'
 alias log='colortail /var/log/syslog'
 alias weather='curl wttr.in/London'
 alias moon='curl wttr.in/moon'
 alias fuck='sudo $(history -p \!\!)'
+alias docker='sudo docker'
+alias ports='sudo netstat -tulpn'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

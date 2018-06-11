@@ -1,5 +1,5 @@
 #!/bin/bash
 
 sudo sed -i '/127.0.0.1:9050/ s/^#*/#/' /etc/privoxy/config
-sudo service tor stop
+#sudo service tor stop
 sudo service privoxy restart
