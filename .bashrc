@@ -94,7 +94,7 @@ bu() { cp "$@" "$@.backup-`date +%s`"; echo "`date +%Y-%m-%d` backed up $PWD/$@"
 colortail() { tail -500 $*|ccze -A; }
 
 # some more ls aliases
-alias ll='ls -al'
+alias ll='ls -alh'
 alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
@@ -143,6 +143,10 @@ alias fuck='sudo $(history -p \!\!)'
 alias docker='sudo docker'
 alias ports='sudo netstat -tulpn'
 
+# Show all logs in /var/log
+alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
+alias weblogs="tail -n 100 -f /var/log/nginx/access.log"
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -185,7 +189,7 @@ $(tput setaf 190)$(df -h | grep Filesystem)$(tput setaf 190)
 $(tput setaf 190)$(df -h|grep /dev/sda1)$(tput setaf 190)
 
 Uptime.............: ${UPTIME}
-IP Address.........: $(ifconfig | grep 'inet'| grep -v '127.0.0.1' | cut -d ' ' -f10 | awk '{ printf "%s ", $1}') $(tput setaf 7)
+IP Address.........: $(ifconfig eth1 | grep 'inet'| grep -v '127.0.0.1' | cut -d ' ' -f10 | awk '{ printf "%s ", $1}') $(tput setaf 7)
 "
 
 # setup python environment wrapper homes
