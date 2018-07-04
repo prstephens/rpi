@@ -1,0 +1,12 @@
+.bash_history
+.bash_logout
+.bashrc.save
+.cache/
+.config/
+.gitconfig
+.npm/
+.profile
+.selected_editor
+.ssh/
+dev/
+installs/
