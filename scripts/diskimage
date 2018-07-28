@@ -1,0 +1,18 @@
+#!/bin/bash
+logger -i "Full disk image backup started"
+
+DATE=`date +%d-%m-%Y`
+IMAGENAME=diskimage-$DATE.img
+FILENAME=$IMAGENAME.tar.gz
+DESDIR=/media/USBHDD/backups
+
+logger -i "Creating disk image..."
+sudo dd bs=4M if=/dev/mmcblk0 of=$DESDIR/$IMAGENAME
+logger -i "Disk image created"
+
+logger -i "Zipping disk image..."
+sudo tar -czf $DESDIR/$FILENAME -C $DESDIR/ $IMAGENAME
+sudo rm -f $DESDIR/$IMAGENAME
+logger -i "Disk image zipped"
+
+logger -i "Full disk image backup completed"

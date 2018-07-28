@@ -1,10 +1,10 @@
 #!/bin/bash
 logger -i "Backup started"
 
-TIME=`date +%b-%d-%y`            # This Command will add date in Backup File Name.
-FILENAME=backup-$TIME.tar.gz    # Here i define Backup file name format.
-FILENAMEFULL=FULL-backup-$TIME.tar.gz
-SRCDIR=/                   # Location of Important Data Directory (Source of backup).
+DATE=`date +%d-%m-%Y`
+FILENAME=backup-$DATE.tar.gz
+FILENAMEFULL=FULL-backup-$DATE.tar.gz
+SRCDIR=/
 SRCDIRS="/home/pi/ /etc/" 
 DESDIR=/media/USBHDD/backups            # Destination of backup file.
 
